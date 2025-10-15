@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+jest.mock("react-router-dom");
+jest.mock("./api/api", () => ({
+  get: jest.fn(() => Promise.resolve({ data: [] })),
+}));
+
+test("renders main layout header", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText(/Dental Clinic Management/i)).toBeInTheDocument();
 });

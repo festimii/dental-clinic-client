@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import {
+  Avatar,
   Box,
-  Grid,
-  Typography,
+  Button,
   Card,
   CardContent,
-  Button,
-  Avatar,
-  Stack,
   Divider,
+  Grid,
   Paper,
+  Stack,
+  Typography,
 } from "@mui/material";
 import {
   People,
@@ -29,6 +29,7 @@ import {
   Line,
   CartesianGrid,
 } from "recharts";
+import PageHeader from "../components/PageHeader";
 
 export default function Dashboard() {
   const [stats, setStats] = useState(null);
@@ -77,28 +78,22 @@ export default function Dashboard() {
   if (!stats) return null;
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant="h4" fontWeight={600} gutterBottom>
-        Dashboard Overview
-      </Typography>
-
-      {/* Quick Action Buttons */}
-      <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<AddCircleOutline />}
-        >
-          New Patient
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          startIcon={<AddCircleOutline />}
-        >
-          New Appointment
-        </Button>
-      </Stack>
+    <Box>
+      <PageHeader
+        title="Dashboard Overview"
+        subtitle="Monitor daily performance metrics across your dental practice."
+        action={
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
+            <Button variant="contained" startIcon={<AddCircleOutline />}>
+              New Patient
+            </Button>
+            <Button variant="outlined" startIcon={<AddCircleOutline />}>
+              New Appointment
+            </Button>
+          </Stack>
+        }
+        sx={{ mb: 3 }}
+      />
 
       {/* KPI Cards */}
       <Grid container spacing={3}>
